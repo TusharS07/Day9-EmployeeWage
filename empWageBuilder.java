@@ -3,47 +3,56 @@ package com.Bridgelabz.EmployeeWageDay9;
 public class EmpWageBuilder {
     public final int FULL_TIME = 1;
     public final int PART_TIME = 2;
-    public int empPerHR_wage = 20;
-
-
-    public int num_of_Working_days = 20;
-    public int max_Hour_In_Month = 100;
 
 
     public static void main(String[] args) {
-        TotalEmpWage totalWage = new TotalEmpWage();
-        totalWage.getEmpTotalWage();
-
+        EmpWageForComany tcs = new EmpWageForComany("TCS",40,20,60);
+        EmpWageForComany capgemini = new EmpWageForComany("Capgemini",60,15,55);
+        System.out.println("Total Emplyoee wage for company " + tcs.company + " is: " + tcs.computeEmpWage());
+        System.out.println();
+        System.out.println("Total Emplyoee wage for company " + capgemini.company + " is: " + capgemini.computeEmpWage());
 
     }
 
-    public static class  TotalEmpWage extends EmpWageBuilder {
 
-        public int empHrs = 0;
-        public int totalEmpHr = 0;
-        public int totalWorkingDays = 0;
+    public static class EmpWageForComany extends EmpWageBuilder {
 
 
-        public void getEmpTotalWage() {
-            while (totalEmpHr <= max_Hour_In_Month && totalWorkingDays < num_of_Working_days) {
+        private final String company;
+        private final int empPerHrWage;
+        private final int numOFWorkingDays;
+        private final int totalHourPerMonth;
+
+
+        public EmpWageForComany(String company, int empPerHrWage, int numOFWorkingDays, int totalHourPerMonth) {
+            this.company = company;
+            this.empPerHrWage = empPerHrWage;
+            this.numOFWorkingDays = numOFWorkingDays;
+            this.totalHourPerMonth = totalHourPerMonth;
+        }
+
+        private int computeEmpWage() {
+            int empHour = 0;
+            int totalEmpHrs = 0;
+            int totalWorkingDays = 0;
+            //computation
+            while (totalEmpHrs <= totalHourPerMonth && totalWorkingDays < numOFWorkingDays) {
                 totalWorkingDays++;
                 int empCheck = (int) (Math.floor(Math.random() * 10) % 3);
                 switch (empCheck) {
                     case FULL_TIME:
-                        empHrs = 8;
+                        empHour = 8;
                         break;
                     case PART_TIME:
-                        empHrs = 4;
+                        empHour = 4;
                         break;
                     default:
-                        empHrs = 0;
+                        empHour = 0;
                 }
-                totalEmpHr += empHrs;
-                System.out.println("Day#: " + totalWorkingDays + " Emp Hr: " + empHrs);
+                totalEmpHrs += empHour;
+                System.out.println("Day#: " + totalWorkingDays + " Emp Hr: " + empHour);
             }
-            int totalEmpWage = totalEmpHr * empPerHR_wage;
-            System.out.println("Employee Total Wage: " + totalEmpWage + " Rs");
-
+            return totalEmpHrs * empPerHrWage;
         }
     }
 }
