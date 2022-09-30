@@ -7,28 +7,31 @@ public class empWageBuilder {
 
     //
     static int empHrs = 0;
+    static int num_of_Working_days = 20;
+    static double empWage = 0;
+    static double totalEmpWage = 0;
 
     public static void main(String[] args) {
-        getEmpDailyWage();
+        getEmpMonthWage();
 
     }
 
-    static double getEmpDailyWage() {
-        double empCheck = Math.floor(Math.random() * 10) % 3;
-        switch ((int) empCheck) {
-            case FULL_TIME:
-                empHrs = 8;
-                break;
-            case PART_TIME:
-                empHrs = 4;
-                break;
-            default:
-                empHrs = 0;
-        }
-        double empWage = empHrs * empPerHR_wage;
-        System.out.println("Employee Daily wage is " +empWage);
-
-        return empWage;
+    static void getEmpMonthWage() {
+            int empCheck = (int) (Math.floor(Math.random() * 10) % 3);
+            switch (empCheck) {
+                case FULL_TIME:
+                    empHrs = 8;
+                    break;
+                case PART_TIME:
+                    empHrs = 4;
+                    break;
+                default:
+                    empHrs = 0;
+            }
+            empWage = empHrs * empPerHR_wage;
+            totalEmpWage =empWage * num_of_Working_days;
+            System.out.println("Employee Daily wage is " + empWage+ " Rs");
+            System.out.println("Total Monthly Emp wage:- " +totalEmpWage+ " Rs");
 
     }
 
