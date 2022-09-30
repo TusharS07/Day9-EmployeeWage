@@ -2,21 +2,27 @@ package com.Bridgelabz.EmployeeWageBuilder;
 
 public class empWageBuilder {
     static int FULL_TIME = 1;
+    static int empPerHR_wage = 20;
+
+    //
+    static int empHrs = 0;
 
     public static void main(String[] args) {
-        //check emp present or not
-        checkEmpPresent();
-
+        getEmpDailyWage();
 
     }
 
-    static double checkEmpPresent() {
+    static double getEmpDailyWage() {
         double empCheck = Math.floor(Math.random() * 10) % 2;
         if (empCheck == FULL_TIME)
-            System.out.println("Employee is Present");
+            empHrs = 8;
         else
-            System.out.println("Employee is Present");
+            empHrs = 0;
+        double empWage = empHrs * empPerHR_wage;
+        System.out.println("Employee Daily wage is " +empWage);
 
-        return empCheck;
+        return empWage;
+
     }
+
 }
